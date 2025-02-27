@@ -1,0 +1,6 @@
+flask
+spacy
+flask-caching
+flask-limiter
+flasgger
+python-dotenv
