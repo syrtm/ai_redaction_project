@@ -1,51 +1,50 @@
-# 🛡️ AI-Powered Data Redaction & Compliance API
+# Data Redaction & Privacy Compliance API
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-2.x-green.svg)](https://flask.palletsprojects.com/)
 [![spaCy](https://img.shields.io/badge/spaCy-NLP-orange.svg)](https://spacy.io)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-🚀 **Enterprise-grade REST API for automatic detection and masking of sensitive data (PII) to ensure GDPR, CCPA, and data privacy compliance.**
+A REST API for automatic detection and masking of sensitive data (PII) to help ensure GDPR, CCPA, and data privacy compliance.
 
-This advanced API combines state-of-the-art **spaCy NLP models** with precision **regex patterns** to automatically identify and mask personal identifiable information including emails, phone numbers, names, organizations, addresses, passport numbers, and dates.
+This API combines spaCy NLP models with regex patterns to identify and mask personal identifiable information including emails, phone numbers, names, organizations, addresses, passport numbers, and dates.
 
 ## Features
 
-- **🔒 Enterprise-Grade Data Protection:** Identifies and masks emails, phone numbers, passport numbers, dates, and addresses using advanced spaCy NLP and regex patterns
-- **⚙️ Flexible Masking Modes:**
-  - **Partial Mode:** Shows first character and masks the rest with asterisks (e.g., `j***@example.com`)
-  - **Full Mode:** Complete redaction with typed placeholders (e.g., `[REDACTED:EMAIL]`)
-- **📊 Detailed Analytics:** Optional detailed output with category, source, positions, and replacement information for each masked element
-- **⚡ High-Performance Caching:** Intelligent caching system for improved response times on repeated requests
-- **🛡️ Built-in Rate Limiting:** 5 requests per minute per IP to prevent abuse
-- **📖 Interactive API Documentation:** Full Swagger/OpenAPI documentation available at `/docs/`
-- **🏥 Health Monitoring:** Built-in health check endpoint for system monitoring
-- **🌍 Multi-Entity Recognition:** Detects PERSON, ORG, GPE (countries/cities), LOC (locations) using state-of-the-art spaCy models
-- **🔧 Environment-Based Configuration:** Easy deployment with `.env` file support for DEBUG, HOST, PORT settings
+- **Data Protection**: Identifies and masks emails, phone numbers, passport numbers, dates, and addresses using spaCy NLP and regex patterns
+- **Flexible Masking Modes**:
+  - **Partial Mode**: Shows first character and masks the rest with asterisks (e.g., `j***@example.com`)
+  - **Full Mode**: Complete redaction with typed placeholders (e.g., `[REDACTED:EMAIL]`)
+- **Performance**: Caching system for improved response times on repeated requests
+- **Rate Limiting**: 5 requests per minute per IP to prevent abuse
+- **API Documentation**: Full Swagger/OpenAPI documentation available at `/docs/`
+- **Health Monitoring**: Built-in health check endpoint for system monitoring
+- **Multi-Entity Recognition**: Detects PERSON, ORG, GPE (countries/cities), LOC (locations) using spaCy models
+- **Configuration**: Environment-based configuration with `.env` file support for DEBUG, HOST, PORT settings
 
-## 🎯 Perfect for Your Business Needs
+## Use Cases
 
-### 📊 **Data Analytics Companies**
+### Data Analytics Companies
 - Clean customer datasets before analysis
 - Ensure GDPR compliance for EU customers
 - Protect sensitive information in reports
 
-### 💼 **Legal & Financial Services** 
+### Legal & Financial Services
 - Redact contracts and legal documents
 - Mask client information in case studies
 - Comply with banking privacy regulations
 
-### 🏥 **Healthcare & Research**
+### Healthcare & Research
 - Anonymize patient records for research
 - Remove PII from medical documents
 - HIPAA compliance for health data
 
-### 🛒 **E-commerce & SaaS Platforms**
+### E-commerce & SaaS Platforms
 - Protect customer data in logs
 - Mask emails in customer support tickets
 - Anonymize user feedback and reviews
 
-## 🔗 API Endpoints Overview
+## API Endpoints
 
 | Endpoint | Method | Purpose | Response Time |
 |----------|---------|---------|---------------|
@@ -53,8 +52,6 @@ This advanced API combines state-of-the-art **spaCy NLP models** with precision 
 | `/redact` | POST | Quick email/phone pattern masking | ~50ms |
 | `/health` | GET | System status monitoring | ~10ms |
 | `/docs` | GET | Interactive API documentation | Instant |
-
-✅ **Production Ready** • ✅ **Docker Compatible** • ✅ **Cloud Deployable**
 
 ## Installation
 
@@ -68,9 +65,9 @@ This advanced API combines state-of-the-art **spaCy NLP models** with precision 
    python -m spacy download en_core_web_sm
    ```
 
-## 🔎 Demo — Profesyonel Veri Maskeleme Çözümü
+## Demo
 
-**🔒 Gerçek Senaryolu Giriş (Confidential Business Email)**
+**Sample Business Email Input**
 ```text
 Dear Client,
 
@@ -88,14 +85,14 @@ Email: sarah.johnson@techsecure.com
 Address: 1247 Silicon Valley Blvd, San Francisco, CA 94102
 ```
 
-**⚡ API Çağrısı (cURL)**
+**API Call**
 ```bash
 curl -s -X POST http://127.0.0.1:8000/redact \
   -H "Content-Type: application/json" \
   --data @demo/request.json > demo/output.json
 ```
 
-**📊 JSON Yanıt (Partial Mode)**
+**JSON Response (Partial Mode)**
 ```json
 {
   "mode": "partial",
@@ -103,7 +100,7 @@ curl -s -X POST http://127.0.0.1:8000/redact \
 }
 ```
 
-**🎯 Maskelenmiş Düz Metin (Partial Mode)**
+**Masked Output (Partial Mode)**
 ```text
 Dear Client,
 
