@@ -216,3 +216,28 @@ def mask_text():
 if __name__ == "__main__":
     from config import DEBUG, HOST, PORT
     app.run(debug=DEBUG, host=HOST, port=PORT)
+
+# --- quick /redact endpoint (minimal) ---
+import re
+from flask import request, jsonify
+
+EMAIL_RE = re.compile(r'\b[\w\.-]+@[\w\.-]+\.\w+\b')
+PHONE_RE = re.compile(r'(\+?\d[\d\-\(\)\s]{7,}\d)')
+
+@app.post("/redact")
+def redact():
+    data = request.get_json(force=True) or {}
+    text = data.get("text", "")
+    mode = data.get("mode", "partial")
+
+    def mask_email(m):
+        s = m.group(0)
+        return "[REDACTED:EMAIL]" if mode == "full" else s[0] + "*"*(len(s)-2) + s[-1]
+
+    def mask_phone(m):
+        return "[REDACTED:PHONE]" if mode == "full" else "+* (***) ***-****"
+
+    red = EMAIL_RE.sub(mask_email, text)
+    red = PHONE_RE.sub(mask_phone, red)
+    return jsonify({"text": red, "mode": mode})
+# --- end patch ---

@@ -1,0 +1,3 @@
+Hello, I'm Jane Doe from Acme Corp.
+You can reach me at jane.doe@acme.com or +1 (415) 555-2671.
+I met John Smith in London on 2024-11-05.

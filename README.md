@@ -25,3 +25,41 @@ This project provides an advanced API that detects and masks sensitive data in t
    ```bash
    pip install -r requirements.txt
    python -m spacy download en_core_web_sm
+   ```
+
+## 🔎 Demo — Metin Maskeleme Sonucu
+
+**Örnek Giriş (Text)**
+```text
+Hello, I'm Jane Doe from Acme Corp.
+You can reach me at jane.doe@acme.com or +1 (415) 555-2671.
+I met John Smith in London on 2024-11-05.
+
+```
+
+
+Komut (cURL)
+
+curl -s -X POST http://127.0.0.1:8000/redact -H "Content-Type: application/json" --data @demo/request.json > demo/output.json
+
+
+Örnek Çıktı (JSON)
+
+```json
+{
+  "mode": "partial",
+  "text": "Hello, I'm Jane Doe from Acme Corp.\nYou can reach me at j***************m or +* (***) ***-****.\nI met John Smith in London on +* (***) ***-****."
+}
+```
+
+
+Maskelenmiş Düz Metin
+
+```text
+Hello, I'm Jane Doe from Acme Corp.
+You can reach me at j***************m or +* (***) ***-****.
+I met John Smith in London on +* (***) ***-****.
+```
+
+
+> Not: `mode` "full" yapılırsa e-posta/telefon gibi PII değerleri `[REDACTED:TYPE]` olarak tamamen gizlenir.
